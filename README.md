@@ -25,7 +25,7 @@ This code generates dose-response curves for mutations with the same phenotypes 
 This code generates data for plotting how mutations affecting different biochemical parameters combine. 
 
 7) Plotting_for_Model_biochemical_ambiguity.R
-All the codes for plotting are listed here, except the dose-response curve codes that are included in the dose-response R curves (No.4 and No.5 aobve)
+All the codes for plotting are listed here, except the dose-response curve codes that are included in the dose-response R curves (Fig. 1A and Fig. S6)
 
 # To be noted: 
 Some functions may give errors but it can be safely ignored. 
