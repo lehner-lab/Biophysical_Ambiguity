@@ -1,7 +1,7 @@
 # Biochemical_Ambiguity
-# The R scripts here are used to generated the modelling data and making figures for the manuscript: 
+# The R scripts here are used to generate the modelling data and figures for the manuscript: 
 "Biochemical ambiguities prevent accurate genetic prediction"  
-RData generated from the scripts are not included here. 
+RData generated from the scripts are not included.  
 Here is the description for each function: 
 
 1) Forward_function_param_to_Output.R 
@@ -26,3 +26,6 @@ This code generates data for plotting how mutations affecting different biochemi
 
 7) Plotting_for_Model_biochemical_ambiguity.R
 All the codes for plotting are listed here, except the dose-response curve codes that are included in the dose-response R curves (No.4 and No.5 aobve)
+
+# To be noted: 
+Some functions may give errors but it can be safely ignored. 
