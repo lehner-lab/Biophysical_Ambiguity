@@ -18,19 +18,12 @@ This function uses phenotypic values to calculate mutational effects on indicate
 3) Reverse_function_for_pleiotropic_muts.R
 This function uses phenotypic values, protein-folding and dimerization parameters as input to calculate mutational effects on DNA-binding parameter.   
 
-4) dose_response_parameter_response_curves.R
+4) dose_response.R
 This code generates data to plot dose-response curves for PR and PRM expressions as a function of wild type CI levels. 
-(Fig. 1A)
-
-5) dose_response_for_mutants_example.R 
-This code generates dose-response curves for mutations with the same phenotypes (but with different biochemical effects) at an expression level of CI. 
-(Fig. S6)
 
 6) Model_biochemical_ambiguity.R 
 This code generates data for plotting how mutations affecting different biochemical parameters combine. 
 
 7) Plotting_for_Model_biochemical_ambiguity.R
-All the codes for plotting are listed here, except the dose-response curve codes that are included in the dose-response R curves (Fig. 1A and Fig. S6)
+All the codes for plotting are listed here.
 
-# To be noted: 
-Some functions may give errors but it can be safely ignored. 
