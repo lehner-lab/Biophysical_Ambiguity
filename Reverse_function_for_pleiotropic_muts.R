@@ -1,8 +1,8 @@
-###### Pleiotropic for three parameters - Folding, Dimerization, and Binding to DNA 
+##### Pleiotropic for three parameters - Folding, Dimerization, and Binding to DNA 
 #### Inputting folding & dimerization to look for binding energies that produce the given phenotype 
 Pheno_to_param_pleiotropy_FDB<- function(total_protein, ddG1,ddG2, W, whichpheno){ # for folding
   # whichpheno= 1 pr ; whichpheno =2, prm 
-  
+  my_protein = total_protein
   # protein amount 8.352848e-07
   inverse = function (f, lower = -2, upper = 10) { # minimum interval and muaximum interval
     function (y) uniroot.all ((function (x) f(x) - y), lower = lower, upper = upper)
@@ -34,39 +34,36 @@ Pheno_to_param_pleiotropy_FDB<- function(total_protein, ddG1,ddG2, W, whichpheno
     
     ##### empirical search
     
+    ##### empirical search
+    
+    Mytotal_protein<- function(free_dimer) {
+      relations=list(deltaGs=c(0, wt_BdeltaGs[1], wt_BdeltaGs[2], wt_BdeltaGs[3],  wt_BdeltaGs[1]+ wt_BdeltaGs[2]+ coop,  wt_BdeltaGs[1]+ wt_BdeltaGs[3],  wt_BdeltaGs[3]+ wt_BdeltaGs[2]+ coop, sum(wt_BdeltaGs)+ coop),
+                     dimer_number=c(0,1,1,1,2,2,2,3)) # thermo_parameters
+      
+      configaration<-c() 
+      
+      Total_protein <- c()
+      Propor_sup<- c()
+      sum_config<- c()
+      r_formd<- c()
+      
+      for (i in 1:8) {
+        configaration[i]<- exp(-relations[[1]][i]/(R*Temp))*free_dimer^relations[[2]][i]
+        sum_config<- sum(configaration)
+        config_prob<- configaration/sum_config 
+        r_formd<- sum(config_prob[i]*relations[[2]][i])*2*DNA
+      }
+      abs(log10(my_protein)- log10((free_dimer/Ka)^0.5+ 2*free_dimer+ r_formd+ (free_dimer/Ka)^0.5*exp(deltaG_folding1/(R*Temp))))# monomer + free dimer + bound dimer + unfolded
+      # in log scale so that the differerneces are expanded. Ohterwise the differences are too small to keep searching
+    }
+    
+    free_dimer=   unlist(optimize(Mytotal_protein, c(10^-40, 10^-6), tol= 10^-23)[1]) # from 10^-21 changed to -40
+    
     configaration<-c() 
-    free_dimer<- c() # free dimer ones 
-    for (i in 2:100) { 
-      free_dimer[1]<- 10^(-40) 
-      free_dimer[i]<- free_dimer[i-1]*2.4
-    }  
-    Total_protein <- c()
-    Propor_sup<- c()
     sum_config<- c()
     r_formd<- c()
     
-    library(rootSolve)
     
-    for (j in 1:100) { 
-      for (i in 1:8) {
-        configaration[i]<- exp(-relations[[1]][i]/(R*Temp))*free_dimer[j]^relations[[2]][i]
-        sum_config<- sum(configaration)
-        config_prob<- configaration/sum_config 
-        r_formd[j]<- sum(config_prob[i]*relations[[2]][i])*2*DNA
-      }
-      Total_protein[j]= (free_dimer[j]/Ka)^0.5+ 2*free_dimer[j]+ r_formd[j]
-    }
-    wt_trial<- data.frame(Total_protein, free_dimer)
-    loess_linear<- loess(wt_trial$free_dimer~ wt_trial$Total_protein, span=0.3) 
-    
-    fraction_folded1<- exp(-deltaG_folding1/(R*Temp))/(1+exp(-deltaG_folding1/(R*Temp)))
-    
-    function_protein<- total_protein*fraction_folded1
-    
-    free_dimer= predict(loess_linear, function_protein) 
-    configaration<-c() 
-    sum_config<- c()
-    r_formd<- c() 
     for (i in 1:8) {
       configaration[i]<- exp(-relations[[1]][i]/(R*Temp))*free_dimer^relations[[2]][i]
       sum_config<- sum(configaration)
@@ -78,9 +75,9 @@ Pheno_to_param_pleiotropy_FDB<- function(total_protein, ddG1,ddG2, W, whichpheno
     Propor_activation=  config_prob[3]+ config_prob[5] # OR2 bound or OR1, OR2 bound
     
     if (myphe== 1) {
-      return(pr = log2(2^11.761-(2^11.761-23.24125)*Propor_sup)- log2(23.24125))
+      return(pr = 1- Propor_sup)
     } else {
-      return( prm= log2(32+ (1024-32)*Propor_activation ) - 5) 
+      return( prm= Propor_activation) 
     }
   }
   
