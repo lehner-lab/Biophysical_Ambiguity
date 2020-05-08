@@ -6,12 +6,10 @@ RData generated from the scripts are not included.
 # Brief description of the study: 
 It is widely assumed that the combined effects of genetic variants can be determined from their individual effects on a trait. Here, we show that this assumption is incorrect and that even with perfect measurements and a mechanistic understanding of a system it is often impossible to predict what happens when two mutations are combined without additional information.  This apparent paradox arises because mutations can have many different biochemical effects to cause the same change in a phenotype. When combining mutations, the outcome can be very different depending upon what these hidden biochemical changes actually are.  Using Lambda repressor (CI) - Operator system, we show that accurate genetic prediction of phenotypes and disease will sometimes not be possible unless these biochemical ambiguities can be resolved by making additional measurements.
 
-# 1.	System requirement:
-1.1 All software dependencies and operating systems (including version numbers)
-     R >= v 3.3.3 (with associated packages including: rootSolve, optimize, ggplot2, ggpubr, viridis, reshape2, stringr)
+# 1.	System requirements:
+* **1.1** R >= v 3.3.3 (with packages: rootSolve, optimize, ggplot2, ggpubr, viridis, reshape2, stringr)
+* **1.2**	Versions the software has been tested on: R (v 3.3.3) and RStudio (v 1.1.463) is used for this study, to run R codes.
 
-1.2	Versions the software has been tested on: R (v 3.3.3) and RStudio (v 1.1.463) is used for this study, to run R codes.
-1.3	No non-standard hardware is required. 
 # 2.	Installation guide: 
 No specific installation needed, only to start by typing “source (‘code_name_to_run_one_of_the_listed_functions_from_one_to_four’ ) ” , this process is instant typically on a normal desktop computer. 
 # 3.	Demo: 
@@ -24,20 +22,20 @@ The function in the code 7. Generalizability.R can be used for any protein-prote
 
 ## List of each code (including custom functions and codes for generating datasets used in the study): 
 
-1.	Forward_function_param_to_Output.R This function uses parameter values to calculate downstream phenotypes (expressions from PR and PRM promoters)
-2.	Reverse_function_pheno_to_biochem.R This function uses phenotypic values to calculate mutational effects on indicated biochemical changes.
-3.	Reverse_function_for_pleiotropic_muts.R This function uses phenotypic values, protein-folding and dimerization parameters as input to calculate mutational effects on DNA-binding parameter.
-4.	dose_response.R This function generates data to plot dose-response curves for PR and PRM expressions as a function of wild type CI levels.
-5.	Model_biochemical_ambiguity.R This code generates data for plotting how mutations affecting different biochemical parameters combine, as an example.
-6.	Plotting_for_Model_biochemical_ambiguity.R Codes used for plotting are listed here, as an example.
-7.	Generalizability.R Including the function, codes to generate datasets and plot to examine whether biochemical ambiguities generate phenotypic unpredictability for a protein-protein interaction pair. 
+* **1.	Forward_function_param_to_Output.R** This function uses parameter values to calculate downstream phenotypes (expressions from PR and PRM promoters)
+* **2.	Reverse_function_pheno_to_biochem.R** This function uses phenotypic values to calculate mutational effects on indicated biochemical changes.
+* **3.	Reverse_function_for_pleiotropic_muts.R** This function uses phenotypic values, protein-folding and dimerization parameters as input to calculate mutational effects on DNA-binding parameter.
+* **4.	dose_response.R** This function generates data to plot dose-response curves for PR and PRM expressions as a function of wild type CI levels.
+* **5.	Model_biochemical_ambiguity.R** This code generates data for plotting how mutations affecting different biochemical parameters combine, as an example.
+* **6.	Plotting_for_Model_biochemical_ambiguity.R** Codes used for plotting are listed here, as an example.
+* **7.	Generalizability.R** Including the function, codes to generate datasets and plot to examine whether biochemical ambiguities generate phenotypic unpredictability for a protein-protein interaction pair. 
 
 ## List of demo datasets. 
 
-1.	Demo1a.RData  (to run ‘pr_prm_Intramol_protein_withDNA_whichparam’  in the Forward_function_param_to_Output.R. This allows specifying which two parameters are changed by which amount for a given mutant.) 
-2.	Demo1b.RData  (to run ‘Forward’ function in the Forward_function_param_to_Output.R. This inputs protein total amount expressed, and all the parameter changes for each mutant. ) 
-3.	Demo2.RData  (to run Reverse_function_pheno_to_biochem.R To be noted: Some phenotypes are not reachable with mutations affecting tetramerization alone, or folding-alone. In that case, the function will return NA ) 
-4.	Demo3.RData  (to run Reverse_function_for_pleiotropic_muts.R)
-5.	Demo4.RData  (to run dose_response.R) 
-6.	Demo5.RData  (to run ‘myppi’ function in the file  Generalizability.R)
+* **1.	Demo1a.RData**  (to run ‘pr_prm_Intramol_protein_withDNA_whichparam’  in the Forward_function_param_to_Output.R. This allows specifying which two parameters are changed by which amount for a given mutant.) 
+* **2.	Demo1b.RData**  (to run ‘Forward’ function in the Forward_function_param_to_Output.R. This inputs protein total amount expressed, and all the parameter changes for each mutant. ) 
+* **3.	Demo2.RData**  (to run Reverse_function_pheno_to_biochem.R To be noted: Some phenotypes are not reachable with mutations affecting tetramerization alone, or folding-alone. In that case, the function will return NA ) 
+* **4.	Demo3.RData**  (to run Reverse_function_for_pleiotropic_muts.R)
+* **5.	Demo4.RData**  (to run dose_response.R) 
+* **6.	Demo5.RData**  (to run ‘myppi’ function in the file  Generalizability.R)
 
