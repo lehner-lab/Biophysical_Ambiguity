@@ -1,4 +1,4 @@
-# Biochemical_Ambiguity
+# Biophysical_Ambiguity
 The R scripts here are used to generate the modelling data and figures for the manuscript: "Biochemical ambiguities prevent accurate genetic prediction".
 
 # Brief description of the study
